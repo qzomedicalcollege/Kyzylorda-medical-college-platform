@@ -1,0 +1,22 @@
+---
+import { t } from '../data/site';
+import { contact } from '../data/content';
+const { lang='ru' } = Astro.props;
+const copy = t[lang] ?? t.ru;
+---
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <div class="logo"><div class="logo-mark">{copy.short}</div><span>{copy.name}</span></div>
+      <p class="lead">{copy.heroText}</p>
+    </div>
+    <div>
+      <b>{copy.contacts}</b>
+      <p>{contact.address}</p><p>{contact.phone}</p><p>{contact.email}</p>
+    </div>
+    <div>
+      <b>RU / KZ / EN</b>
+      <p><a href="/ru/">Русский</a></p><p><a href="/kz/">Қазақша</a></p><p><a href="/en/">English</a></p>
+    </div>
+  </div>
+</footer>
