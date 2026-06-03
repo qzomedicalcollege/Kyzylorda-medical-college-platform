@@ -1,31 +1,13 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { t, stats, specialties } from '../../data/site';
+import { t, stats } from '../../data/site';
+import { specialties, sections, news } from '../../data/content';
 const copy = t.ru;
 ---
 <BaseLayout lang="ru" title="Главная">
-  <section class="hero section">
-    <div class="hero-grid container">
-      <div>
-        <h1>{copy.heroTitle}</h1>
-        <p class="lead">{copy.heroText}</p>
-        <div class="mt-6 flex gap-4">
-          <a class="btn btn-primary" href="/ru/admissions/">{copy.apply}</a>
-          <a class="btn btn-secondary" href="/ru/specialties/">{copy.choose}</a>
-        </div>
-      </div>
-      <div class="hero-visual glass">
-        <img src="/images/college-hero.jpg" alt="Колледж" />
-      </div>
-    </div>
-  </section>
-  <section class="stats section container">
-    {stats.map(s => <div class="stat glass"><b>{s[0]}</b><span>{s[1]}</span></div>)}
-  </section>
-  <section class="section container">
-    <h2 class="section-title">{copy.specialties}</h2>
-    <div class="grid-auto">
-      {specialties.map(sp => <div class="card"><b>{sp.ru}</b><p>{sp.qualificationRu}</p></div>)}
-    </div>
-  </section>
+  <section class="hero section"><div class="hero-grid container"><div><p class="eyebrow">Официальная цифровая платформа</p><h1>{copy.heroTitle}</h1><p class="lead">{copy.heroText}</p><div class="mt-6 flex gap-4"><a class="btn btn-primary" href="/ru/admissions/">{copy.apply}</a><a class="btn btn-secondary" href="/ru/specialties/">{copy.choose}</a></div></div><div class="hero-visual glass"><img src="https://images.unsplash.com/photo-1576765608535-5f04d1e3f289?auto=format&fit=crop&w=1200&q=85" alt="Медицинское образование" /><div class="hero-badge"><b>IQAA 2021–2026</b><p>Аккредитация образовательных программ</p></div></div></div></section>
+  <section class="stats section container">{stats.map(s => <div class="stat glass card"><b>{s[0]}</b><span>{s[1]}</span></div>)}</section>
+  <section class="section container"><p class="eyebrow">Разделы</p><h2 class="section-title">Портал колледжа</h2><div class="grid-auto">{sections.map(s => <a class="card" href={`/ru/${s[0]}/`}><b>{s[1]}</b><p>{s[2]}</p></a>)}</div></section>
+  <section class="section container"><p class="eyebrow">Программы</p><h2 class="section-title">{copy.specialties}</h2><div class="grid-auto">{specialties.map(sp => <div class="card"><span class="badge">{sp[4]}</span><h3>{sp[1]}</h3><p>{sp[2]} · {sp[3]}</p></div>)}</div></section>
+  <section class="section container"><p class="eyebrow">Новости</p><h2 class="section-title">Последние материалы</h2><div class="grid-auto">{news.map(n => <div class="card"><span class="badge">{n[1]}</span><h3>{n[2]}</h3><p>Материал будет расширен в полноценную страницу новости.</p></div>)}</div></section>
 </BaseLayout>
