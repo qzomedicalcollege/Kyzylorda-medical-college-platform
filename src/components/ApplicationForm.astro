@@ -1,0 +1,26 @@
+---
+import { specialties } from '../data/content';
+const { lang='ru' } = Astro.props;
+---
+<form class="card" id="application-form">
+  <h3>Онлайн-заявка</h3>
+  <p class="lead">Форма подготовлена для Supabase. До подключения базы работает как демонстрация.</p>
+  <div class="grid-auto">
+    <input class="input" name="full_name" required placeholder="ФИО" />
+    <input class="input" name="phone" required placeholder="Телефон" />
+    <input class="input" name="email" type="email" placeholder="Email" />
+    <select class="input" name="specialty">{specialties.map(sp => <option value={sp[0]}>{lang==='kz'?sp[2]:lang==='en'?sp[3]:sp[1]}</option>)}</select>
+  </div>
+  <textarea class="input" name="message" rows="4" placeholder="Сообщение" style="margin-top:1rem"></textarea>
+  <button class="btn btn-primary" style="margin-top:1rem" type="submit">Отправить</button>
+  <p id="application-status" class="lead"></p>
+</form>
+<script>
+  const form = document.getElementById('application-form');
+  const status = document.getElementById('application-status');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.reset();
+    if (status) status.textContent = 'Заявка сохранена в демо-режиме. После подключения Supabase она будет уходить в базу.';
+  });
+</script>
