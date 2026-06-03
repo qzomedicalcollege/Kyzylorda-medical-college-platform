@@ -6,18 +6,12 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
-    "check": "astro check"
+    "preview": "astro preview"
   },
   "dependencies": {
-    "@astrojs/check": "latest",
     "@astrojs/sitemap": "latest",
     "@supabase/supabase-js": "latest",
-    "@tailwindcss/vite": "latest",
-    "astro": "latest",
-    "lucide-astro": "latest",
-    "tailwindcss": "latest",
-    "typescript": "latest"
+    "astro": "latest"
   },
   "devDependencies": {}
 }
