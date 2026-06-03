@@ -1,17 +1,16 @@
 ---
-import { t } from '../data/site';
+import { t, base } from '../data/site';
 const { lang='ru' } = Astro.props;
 const copy = t[lang] ?? t.ru;
-const nav = [
-  ['about', copy.about], ['specialties', copy.specialties], ['admissions', copy.admissions], ['students', copy.students], ['practice', copy.practice], ['documents', copy.documents], ['news', copy.news], ['contacts', copy.contacts]
-];
+const nav = [['about', copy.about], ['specialties', copy.specialties], ['admissions', copy.admissions], ['students', copy.students], ['practice', copy.practice], ['documents', copy.documents], ['news', copy.news], ['contacts', copy.contacts]];
+const url = (p='') => `${base}/${p}`.replace(/\/+/g,'/');
 ---
 <header class="header container">
   <div class="navbar glass">
-    <a class="logo" href={`/${lang}/`}><div class="logo-mark">{copy.short}</div><span>{copy.name}</span></a>
-    <nav class="nav-links">{nav.map(([k,v]) => <a class="nav-link" href={`/${lang}/${k}/`}>{v}</a>)}</nav>
-    <div class="desktop-actions lang-switch"><a class={lang==='ru'?'active':''} href="/ru/">RU</a><a class={lang==='kz'?'active':''} href="/kz/">KZ</a><a class={lang==='en'?'active':''} href="/en/">EN</a></div>
+    <a class="logo" href={url(`${lang}/`)}><div class="logo-mark">{copy.short}</div><span>{copy.name}</span></a>
+    <nav class="nav-links">{nav.map(([k,v]) => <a class="nav-link" href={url(`${lang}/${k}/`)}>{v}</a>)}</nav>
+    <div class="desktop-actions lang-switch"><a class={lang==='ru'?'active':''} href={url('ru/')}>RU</a><a class={lang==='kz'?'active':''} href={url('kz/')}>KZ</a><a class={lang==='en'?'active':''} href={url('en/')}>EN</a></div>
     <button class="menu-btn" data-menu>☰</button>
   </div>
-  <div class="mobile-panel glass" data-mobile>{nav.map(([k,v]) => <a href={`/${lang}/${k}/`}>{v}</a>)}</div>
+  <div class="mobile-panel glass" data-mobile>{nav.map(([k,v]) => <a href={url(`${lang}/${k}/`)}>{v}</a>)}</div>
 </header>
