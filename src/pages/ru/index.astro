@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { t, stats, specialties } from '../../data/site';
+const copy = t.ru;
+---
+<BaseLayout lang="ru" title="Главная">
+  <section class="hero section">
+    <div class="hero-grid container">
+      <div>
+        <h1>{copy.heroTitle}</h1>
+        <p class="lead">{copy.heroText}</p>
+        <div class="mt-6 flex gap-4">
+          <a class="btn btn-primary" href="/ru/admissions/">{copy.apply}</a>
+          <a class="btn btn-secondary" href="/ru/specialties/">{copy.choose}</a>
+        </div>
+      </div>
+      <div class="hero-visual glass">
+        <img src="/images/college-hero.jpg" alt="Колледж" />
+      </div>
+    </div>
+  </section>
+  <section class="stats section container">
+    {stats.map(s => <div class="stat glass"><b>{s[0]}</b><span>{s[1]}</span></div>)}
+  </section>
+  <section class="section container">
+    <h2 class="section-title">{copy.specialties}</h2>
+    <div class="grid-auto">
+      {specialties.map(sp => <div class="card"><b>{sp.ru}</b><p>{sp.qualificationRu}</p></div>)}
+    </div>
+  </section>
+</BaseLayout>
