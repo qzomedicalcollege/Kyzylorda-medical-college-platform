@@ -1,0 +1,14 @@
+---
+import { specialties, sections, news, contact } from '../data/content';
+const { title='Раздел', kind='about', lang='ru' } = Astro.props;
+const isSpec = kind === 'specialties';
+const isNews = kind === 'news';
+const isContact = kind === 'contacts';
+---
+<section class="page-hero container"><p class="eyebrow">Kyzylorda Medical Higher College</p><h1>{title}</h1><p class="lead">Раздел новой цифровой платформы колледжа. Контент будет расширен на русском, казахском и английском языках.</p></section>
+<section class="section container">
+  {isSpec ? <div class="grid-auto">{specialties.map(sp => <div class="card"><span class="badge">{sp[4]}</span><h3>{lang==='kz'?sp[2]:lang==='en'?sp[3]:sp[1]}</h3><p>Код специальности: {sp[4]}</p></div>)}</div> : null}
+  {isNews ? <div class="grid-auto">{news.map(n => <div class="card"><span class="badge">{n[1]}</span><h3>{n[2]}</h3><p>Заготовка страницы новости.</p></div>)}</div> : null}
+  {isContact ? <div class="grid-auto"><div class="card"><b>Адрес</b><p>{contact.address}</p></div><div class="card"><b>Телефон</b><p>{contact.phone}</p></div><div class="card"><b>Email</b><p>{contact.email}</p></div></div> : null}
+  {!isSpec && !isNews && !isContact ? <div class="grid-auto">{sections.map(s => <div class="card"><b>{s[1]}</b><p>{s[2]}</p></div>)}</div> : null}
+</section>
