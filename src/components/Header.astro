@@ -1,0 +1,20 @@
+---
+import { t } from '../data/site';
+const { lang='ru' } = Astro.props;
+const copy = t[lang] ?? t.ru;
+---
+<header class="header container">
+  <div class="navbar">
+    <div class="logo">
+      <div class="logo-mark">{copy.short}</div>
+      <span>{copy.name}</span>
+    </div>
+    <nav class="nav-links">
+      {Object.entries(copy.nav).map(([k,v]) => <a class="nav-link" href={`/${lang}/${k}/`}>{v}</a>)}
+    </nav>
+    <button class="menu-btn" data-menu>☰</button>
+  </div>
+  <div class="mobile-panel" data-mobile>
+    {Object.entries(copy.nav).map(([k,v]) => <a href={`/${lang}/${k}/`}>{v}</a>)}
+  </div>
+</header>
